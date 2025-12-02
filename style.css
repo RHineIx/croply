@@ -1,0 +1,165 @@
+/* تحسينات عامة */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* خيارات البطاقات */
+.card-option {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+.card-option:hover {
+    border-color: #3b82f6;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.icon-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+}
+
+/* أزرار التحكم بالحدود */
+.border-btn {
+    flex: 1;
+    height: 40px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.border-btn:hover { background-color: #f8fafc; }
+.border-btn.active {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+/* --- ورقة الطباعة A4 (تم التعديل) --- */
+.print-container {
+    background: #525659;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: auto;
+    /* تحسين العرض على الموبايل */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.a4-sheet {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    /* تم التعديل: إزالة الهوامش التلقائية لعدم التوسط */
+    margin: 0; 
+    padding: 10mm; /* هامش داخلي للورقة */
+    
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* تم التعديل: البدء من اليسار ومن الأعلى */
+    align-content: flex-start; 
+    justify-content: flex-start; 
+    direction: ltr; /* مهم جداً لترتيب الصور من اليسار لليمين */
+    
+    gap: 5mm; /* المسافة بين الصور */
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+}
+
+/* في الشاشات الصغيرة، نقوم بتصغير عرض الورقة للمعاينة فقط */
+@media (max-width: 768px) {
+    .a4-sheet {
+        transform: scale(0.6); /* تصغير للمعاينة */
+        transform-origin: top center;
+        margin-bottom: -100mm; /* تعويض المساحة الفارغة بعد التصغير */
+    }
+    .print-container {
+        padding: 10px 0;
+        overflow-x: hidden;
+    }
+}
+
+/* إطار الصورة داخل الورقة */
+.photo-item {
+    position: relative;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* أنماط الحدود (Borders) */
+.style-dashed { border: 1px dashed #94a3b8; }
+.style-solid { border: 1px solid #cbd5e1; }
+
+.style-corner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 1px solid #000;
+    clip-path: polygon(0 10px, 0 0, 10px 0, 10px 100%, 0 100%, 0 calc(100% - 10px), 100% calc(100% - 10px), 100% 100%, calc(100% - 10px) 100%, calc(100% - 10px) 0, 100% 0, 100% 10px);
+}
+
+.style-wavy {
+    border: 3px double #cbd5e1;
+    border-radius: 2px;
+}
+
+/* --- وضع الطباعة --- */
+@media print {
+    @page {
+        size: A4;
+        margin: 0; /* إلغاء هوامش الطابعة الافتراضية */
+    }
+    html, body {
+        height: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white;
+    }
+    .no-print { display: none !important; }
+    
+    .print-container {
+        padding: 0;
+        background: none;
+        display: block;
+        width: 100%;
+    }
+    
+    .a4-sheet {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        transform: none !important; /* إلغاء تصغير الموبايل عند الطباعة */
+        page-break-after: always;
+    }
+}

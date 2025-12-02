@@ -1,0 +1,26 @@
+[
+    {
+        "label": "جواز سفر عراقي",
+        "widthMm": 40,
+        "heightMm": 60,
+        "subtitle": "4×6 سم",
+        "category": "passport",
+        "icon": "airplane_ticket"
+    },
+    {
+        "label": "هوية الأحوال / بطاقة السكن",
+        "widthMm": 35,
+        "heightMm": 45,
+        "subtitle": "3.5×4.5 سم",
+        "category": "id",
+        "icon": "badge"
+    },
+    {
+        "label": "صور مدرسية",
+        "widthMm": 30,
+        "heightMm": 40,
+        "subtitle": "3×4 سم",
+        "category": "school",
+        "icon": "school"
+    }
+]
