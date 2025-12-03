@@ -203,7 +203,7 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* --- Print Media Query --- */
+/* --- Print Media Query (FIXED for Single Page) --- */
 @media print {
     @page {
         size: A4;
@@ -211,19 +211,23 @@
     }
 
     html, body {
-        height: 100%;
+        width: 210mm;
+        height: 297mm;
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff;
+        overflow: hidden; /* Hide scrollbars */
     }
 
     .no-print {
         display: none !important;
     }
 
+    /* Reset the MAIN container which has min-h-screen */
     body > * {
         margin: 0 !important;
         padding: 0 !important;
+        min-height: 0 !important; /* CRITICAL FIX: Overrides Tailwind min-h-screen */
     }
 
     .print-container {
@@ -248,6 +252,7 @@
         left: 0;
         top: 0;
         direction: ltr !important; 
+        page-break-after: avoid; /* Prevent extra page */
     }
 
     .print-safe-area {

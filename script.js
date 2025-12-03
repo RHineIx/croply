@@ -1,9 +1,7 @@
 /**
  * Rhineix Croply - Smart Document Photo Studio
  * Modernized JS Structure (ES6+)
- * * * UPDATES:
- * - Position buttons match visual layout (LTR)
- * - Disabled context menu on cropping area
+ * Stable Version (LTR Buttons + No Context Menu)
  */
 
 // --- 1. Data & Configuration ---
